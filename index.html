@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Psychic Game</title>
+</head>
+<body>
+
+	<h1>Psychic Game</h1>
+
+	<p id="computer">Guess What Letter I'm Thinking Of</p>
+
+	<p>Wins:<span id="wins"></span></p>
+
+	<p>Losses:<span id="losses"></span></p>
+
+	<p>Guesses Left:<span id="guessesleft"></span></p>
+	
+    <p> Your guesses so far: <span id="left"> </span></p>	
+
+<script type="text/javascript">
+
+var wins = 0;
+
+var losses = 0;
+
+var remainingGuesses = 10;
+	
+var randComputer = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+
+var computerGuess = randComputer[Math.floor(Math.random() * randComputer.length)];
+	console.log(computerGuess);
+
+var userKey = document.getElementById("left");
+	
+document.onkeydown = function(event) {
+userKey.textContent += "," + event.key;
+
+		var userGuess = event.key;
+
+      	if (userGuess === computerGuess) {
+		alert("you win");
+		wins++;
+		document.getElementById("wins").innerHTML = wins;
+		remainingGuesses = 10;
+		userKey.textContent = "";
+	}
+
+		else {
+			console.log("you lose");
+			remainingGuesses--;
+			document.getElementById("guessesleft").innerHTML = remainingGuesses;
+
+			if (remainingGuesses === 0) {
+				alert("game over");
+				losses++;
+				document.getElementById("losses").innerHTML = losses;
+				remainingGuesses = 10;
+				userKey.textContent = "";
+
+			}
+
+		}
+
+
+
+};
+
+
+
+	
+
+
+</script>
+</body>
+</html>
